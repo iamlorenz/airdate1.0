@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0">
+		<title>Airdate</title>
+
+		<!-- load stuff, remember to move js to the bottom when finished-->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+		<link rel="stylesheet" href="../static/css/style.min.css" />	
+		<script src="https://use.typekit.net/emv7ovo.js"></script>
+		<script>try{Typekit.load({ async: false });}catch(e){}</script>
+		<script src="../static/js/main.js"></script>
+
+	</head>
+	<body ng-app="airdate" ng-controller="mainController">
+
+		<!-- pop up log in/signup menu -->
+		<div id="cover" ng-show="showLogin">
+			<div class="popup">
+
+				    <img src="./static/images/airdatelogo.png" id="logo">
+				    <img src="./static/images/clear.png" id="close" ng-click="showLogin =!showLogin ">
+				    <!-- show any messages that come back with authentication -->
+				    <div class="login-message">
+				    <% if (message.length > 0) { %>
+				        <div class="alert alert-warning"><%= message %></div>
+				    <% } %>
+				    </div>
+					 <form action="/login" method="post" class="login">
+				        <div class="login-email">
+				            <input type="text" name="email" placeholder="Email">
+				        </div>
+				        <div class="login-password">
+				            <input type="password" name="password" placeholder="Password" style="padding-right:55px;">
+				           	<a href="/forgot" id="newpassword">Forgot?</a>
+				        </div>
+				        <div class="login-submit">
+				        	<button type="submit" class="button button-primary">Log In</button>
+				        	<div id="noaccount">
+				        		<h5>Don't have an account?</h5>
+				        		<a href="/signup">Sign Up.</a>
+				        	</div>
+				        </div>
+				    </form>
+
+			</div>
+		</div>
+
+		<div class="base">
+
+			<!-- header -->
+			<section class="header" ng-class="userShows.length == 0 ? 'noshows' : 'headershows'">
+				<div class="head1">
+					<a href="/"><img src="./static/images/airdatelogo.png" id="logo"></a>
+				</div>
+				<div class="nav head2">
+					<!-- <a href="#"><div class="button button-regular">Share</div></a> -->
+					<a href="#"><div class="button button-primary" ng-click="showLogin = !showLogin">Log In</div></a>
+				</div>
+				<div class="headline" ng-if="userShows.length == 0">
+					<h1>Get shedules for your favourite TV Shows. Add episodes to your calendar with just one click.</h1>
+				</div>
+				<div class="search head3">
+					<form ng-submit="search()" >
+						<input ng-model="searchTerm" placeholder="What TV Shows do you watch?" autofocus/>
+						<div class="results" ng-hide="searching">
+							<div class="result-item" ng-repeat="item in searchResults" 
+									ng-click="select(item.show.name, item.show.id, item.show.premiered)">
+								<p class="result-name">{{ item.show.name }}</p>
+								<p class="date">{{ item.show.premiered.substring(0,4) }}</p>
+							</div>
+						</div>
+					</form>
+				</div>
+			</section>
+			<!-- end header -->
+
+			<section class="main">
+		
+				<!-- Your Shows List -->
+				<div class="shows-container">
+					<div class="shows" ng-if="userShows.length > 0">
+						<div class="shows-wrapper">
+							<h3>Your Shows </h3>
+							<div class="chip" ng-repeat="show in userShows | orderBy:'$index':true">
+								<p>{{  show.name }}</p>
+								<img src="./static/images/deleteicon.svg" ng-click="deleteShow(show)">
+							</div>
+						</div>
+						<!-- Save Button  -->
+						<a href="#"><div class="button button-primary">Save Shows</div></a>
+					</div>
+				</div>
+
+				<!-- Episodes List -->
+				<div class="lists-container">
+					<div class="list episodelist" ng-if="userShows.length > 0" ng-repeat="show in userShows | orderBy:'$index':true">
+						<!-- headline -->
+						<div class="head">
+							<h3>{{ show.name }}</h3>
+							<p class="date">{{ show.started }}</p>
+						</div>
+
+						<!-- season selector -->
+						<div class="seasons">
+							<div class="chip" ng-repeat="season in show.seasons" 
+											ng-click="selectSeason($index);" toggle-class="selected">{{ $index+1 }}</div>
+							<div class="chip selected" toggle-class="selected">Upcoming</div>
+						</div>
+
+						<!-- old episodes -->
+						<div class="episodes" ng-if="selectedSeason > -1" ng-repeat="episode in show.seasons[selectedSeason]">
+							<div>
+								<p class="ep-number spacer">{{ episode.season }}.{{ episode.epInSeason }}</p>
+								<p class="ep-title">{{ episode.name }}</p>
+							</div>
+							<div>
+								<p class="date">{{ episode.airdate }}</p>
+								<p class="time">{{ episode.airtime }}</p>
+								<div class="spacer"></div>
+							</div>
+						</div>
+						<hr ng-if="selectedSeason > -1">
+						<!-- list of episodes -->
+						<div class="episodes" ng-repeat="episode in show.upcomingEpisodes">
+							<div>
+								<p class="ep-number spacer">{{ episode.season }}.{{ episode.epInSeason }}</p>
+								<p class="ep-title">{{ episode.name }}</p>
+							</div>
+							<div>
+								<p class="date">{{ episode.airdate }}</p>
+								<p class="time">{{ episode.airtime }}</p>
+								<div class="spacer"></div>
+							</div>
+							<!-- 
+							<div>
+								<p class="summary">{{ episode.summary }}</p>
+							</div> 
+							-->
+						</div>
+						<div class="add-all-episodes">
+							<div class="button button-regular">Add All Episodes to Calendar</div>
+						</div>
+					</div>	
+				</div>
+
+				<div class="right-column"></div>
+			</section>
+
+		</div>
+
+		<!-- footer -->
+		<footer>
+			<div class="author">
+				<p>
+					Made by <a href="http://twitter.com/lorenzschimik">@lorenzschimik</a> &middot; 
+					<a href="/logout">Logout</a> &middot; <a href="/signup">signup</a> 
+				</p>
+			</div>
+			<div class="api">
+				<p>Created with the <a href="http://tvmaze.com">TVMaze API</a></p>
+			</div>
+		</footer>
+	</body>
+</html>

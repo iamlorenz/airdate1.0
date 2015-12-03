@@ -1,0 +1,62 @@
+//reset some stuff
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0} 
+*, *:before, *:after { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+*:focus {
+    outline: none;
+}
+a{text-decoration:none;}
+body,html{height:100%;}
+
+//mixins
+@mixin row-wrap($content) {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-box-pack: $content;
+	-webkit-justify-content: $content;
+  -ms-flex-pack: $content;
+  justify-content: $content;
+}
+//mixins
+@mixin column($content) {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: column;
+  -ms-flex-flow: column;
+  flex-flow: column;
+  -webkit-box-pack: $content;
+  -webkit-justify-content: $content;
+  -ms-flex-pack: $content;
+  justify-content: $content;
+}
+@mixin border-bottom{
+  border-bottom: 1px solid $gray80;
+}
+
+//variables
+//color variables
+$gray100: 	#2A2A2A; 
+$gray80:	  #9D9D9D;
+$gray60:    #E1E1E1;
+$gray20:    #F4F4F4;
+$gray10:    #FBFBFB;
+$regular: 	#ECECEC; //light gray
+$primary: 	#33AFFF; //blue
+$selected: 	#FAE84D; //yellow
+
+//import scss partials
+@import "_theme.scss";
+@import "_frame.scss";
+@import "_table.scss";
+
+body{
+	font-family: "acumin-pro-semi-condensed",arial, verdana, sans-serif;
+	background-color:#fff;
+	color:$gray100;
+}

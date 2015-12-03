@@ -1,0 +1,152 @@
+//this file is for declaring style variables -> creating the theme only
+//button styles
+.button{
+	font-size: 13px;
+	font-weight:700;
+	padding: 8px 14px;
+	color: $gray100;
+	border:none;
+}
+.button-primary{
+	background-color: $primary;
+}
+.button-regular{
+	background-color: $regular;
+}
+.button-primary:hover{
+	background-color:darken($primary,4%);
+}
+.button-regular:hover{
+	background-color:darken($regular,4%);
+}
+
+//text style
+h1{
+	font-size: 26px;
+	font-weight: 800;
+	line-height:34px;
+}
+h3{
+	font-size: 18px;
+	font-weight: 700;
+}
+h5{
+	font-size:13px;
+	color: $gray80;
+}
+.ep-title{
+	font-size: 18px;
+}
+.ep-number{
+	font-size: 15px;
+	color: $gray80;
+	padding-top:2px;
+}
+.result-name{
+	font-size: 15px;
+	font-weight: 700;
+}
+.date{
+	font-size: 15px;
+	color: $gray80;
+}
+.time{
+	padding-left:8px;
+	font-size:15px;
+}
+//footer
+.api,.author,.footer{
+	font-size:13px;
+	color:$gray80;
+	a{
+		color: $primary;
+	}
+}
+
+//forms
+input{
+	border: none;
+	border-radius:0;
+	border-bottom: 1px solid $gray80;
+	font-size: 16px;
+}
+.login{
+	input{
+		width: 250px;
+		border-bottom:1px solid $gray100;
+		font-size: 18px;
+		margin-bottom: 24px;
+	}
+}
+#newpassword{
+	font-weight:700;
+	color: $gray100;
+	font-size:12px;
+}
+
+
+//divider
+hr{
+	border:0;
+	height:0;
+	@include border-bottom;
+}
+//chips
+.chip{
+	background-color: $regular;
+	padding:6px 10px;
+	font-size:13px;
+	font-weight: 700;
+}
+.chip:hover{ cursor:pointer;}
+.selected{ background-color: $selected; }
+.selected:hover{ cursor:pointer;}
+
+//header
+.nav{
+	@include row-wrap(flex-end);
+	:first-child{margin-right:4px;}
+}
+#logo{	
+	align-self: flex-end;
+	width:130px;
+}
+//pop up
+#close{
+	width:20px;
+	position: absolute;
+	top:24px;
+	right:24px;
+	opacity:0.7;
+}
+#close:hover{cursor:pointer;opacity:1;}
+#noaccount{
+	a{
+		font-weight: 800;
+		font-size: 15px;
+		color: $gray100;
+		float:right;
+	}
+}
+
+//login
+.alert{
+	font-size:14px;
+	padding: 8px 14px;
+	color: $gray100;
+	font-weight: 700;
+	display: inline-block;
+}
+.alert-warning{
+	background-color: $gray20;
+}
+
+//media queries
+@media screen and (min-width: 600px) {
+
+	h1{
+		font-size: 46px;
+		line-height: 48px;
+	}
+
+}

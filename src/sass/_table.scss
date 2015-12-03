@@ -1,0 +1,52 @@
+//architecture of episodes "table"
+//episodelist
+@media screen and (min-width: 320px) {
+	.list{
+		max-width: 650px;
+		margin-bottom: 65px;
+
+		.head{
+			@include row-wrap(space-between);
+			@include border-bottom;
+			padding-bottom: 8px;
+		}
+		.seasons{
+			@include row-wrap(flex-start);
+			@include border-bottom;
+			padding: 12px 0 2px 0;
+			margin: 0px 0 4px 0;
+		}
+		.episodes{
+			@include row-wrap(space-between);
+			padding: 4px 0;
+
+			div:first-child{
+				@include row-wrap(flex-start);
+			}
+			div:last-child{
+				@include row-wrap(flex-end);
+			}
+			.spacer{ display:none;}
+
+		}
+		.add-all-episodes{
+			@include row-wrap(flex-end);
+			border-top: 1px solid $gray80;
+			padding: 8px 0;
+			margin:4px 0 0 0;
+		}
+		hr{ margin: 8px 0;}
+	}
+}
+//show episode numbers
+@media screen and (min-width: 480px) {
+	.list{
+			.head{ margin:0 40px;}
+			.seasons, .summary{margin: 0px 40px 4px 40px;}
+			.episodes{ .spacer{ width: 40px; display:inline;}}
+			.add-all-episodes{ margin:4px 40px 0 40px;}
+			hr{ margin: 8px 40px;}
+		}
+}
+
+

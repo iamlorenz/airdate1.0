@@ -1,0 +1,189 @@
+//architecture of the responsive site
+.base{
+	padding:24px 12px;
+	max-width:1050px;
+	margin:0 auto;
+	min-height:100%;
+	margin-bottom: -56px; 
+}
+
+.header{
+	@include row-wrap(flex-start);
+	align-items: center;
+	margin-bottom:30px;
+}
+.head1,.head2{ flex: 1 50%;}
+.head3{ flex: 2 100%;margin-top:24px;position:relative;}
+
+.headline{ margin:30px 0;flex: 2 100%;}
+
+.search{
+	input{
+		width: 100%;
+		background: url(/static/images/searchicon.svg) no-repeat scroll 0px 3px;
+		background-size:16px;
+		padding: 0 16px 8px 30px;
+		margin-bottom: 0;
+	}
+}
+.results{
+	position:absolute;
+	width:100%;
+	// border:1px solid $gray60; 
+	// border-top:none;
+	// -webkit-box-shadow: 0px 2px 4px 0px rgba(209,209,209,0.6);
+	// -moz-box-shadow: 0px 2px 4px 0px rgba(209,209,209,0.6);
+	// box-shadow: 0px 2px 4px 0px rgba(209,209,209,0.6);
+}
+.result-item{
+	@include row-wrap(space-between);
+	align-items:center;
+	background-color: $gray20;
+	border-bottom: 1px solid $gray60;
+	padding: 12px 30px;
+}
+.result-item:last-child{
+	border-bottom: none;
+}
+.result-item:hover{
+	background-color: $regular;
+	cursor:pointer;
+}
+
+.main{
+	@include row-wrap(flex-start);
+}
+.main > * {
+	flex: 1 100%;
+}
+.chip{
+	@include row-wrap(flex-start);
+	margin-right: 12px;
+	margin-bottom:10px;
+	//delete icon:
+	img{ width: 12px; margin-left: 8px;}
+	img:hover{ cursor:pointer;}
+	display: inline-block;
+}
+
+//shows =================
+.shows-container{ margin-bottom:24px;}
+.shows{
+	.button{
+		max-width: 98px;
+	}
+}
+
+.shows-wrapper{
+	@include row-wrap(flex-start);
+	h3{ display:none;}
+	.chip{
+		@include row-wrap(flex-end);
+		align-items:center;
+		margin-right: 12px;
+	}
+}
+
+//login pop up ===========
+#cover{
+	position:fixed;
+	height:100%;
+	width:100%;
+	top:0;
+	left:0;
+	background:rgba(0,0,0,0.82);
+	z-index:5;
+}
+
+.popup{
+	position: fixed;
+	height:350px;
+	width:370px;
+	left: 50%;
+	top:140px;
+    transform: translate(-50%, 0);
+	background-color: #fff;
+	z-index:10;
+	padding:60px;
+}
+.login{
+	position:absolute;
+	bottom:60px;
+}
+.login-message{
+	margin-top:16px;
+}
+#newpassword{
+	display:inline-block;
+	margin-left:-50px;
+}
+.login-submit{
+	@include row-wrap(space-between);
+}
+
+
+//footer =================
+footer{
+	padding:0 12px;
+	height:56px;
+	background-color:$gray10;
+	border-top:1px solid $gray20;
+	@include row-wrap(flex-start);
+	align-items:center;
+	div{flex:1 50%;}
+	.api{
+		@include row-wrap(flex-end);
+	}
+}
+
+//full width layout ========
+@media screen and (min-width: 740px) {
+	.base{
+		padding:48px 32px;
+	}
+
+	//header when a userShows.length > 0
+	.headershows{
+		.head1,.head2{ flex:1 20%;}
+		.head2{order:3;}
+		.head3{ flex:3 60%;margin:0;padding:0 40px;}
+		.headline{ order:4;flex: 3 100%;}
+		.results{padding-right:80px;}
+	}
+
+	//header for start page
+	.noshows {
+		.head1 { 
+			order:3;
+			flex:2 30%;
+		}
+		.head2 { order:1; flex:5 100%;}
+		.head3 { order: 4; flex:3 60%;form{ max-width:500px;.results{max-width:500px;}}}
+		.headline {
+			order:2; 
+			flex:5 100%;
+			margin: 65px 0;
+		}
+	}
+
+	.main{margin-top: 80px;}
+	.search-header{ display:inline; }
+	.lists-container { flex:3 60%;}
+	.shows-container{ 
+		flex: 1 20%; 
+		display:inline;
+		margin-bottom: 0;
+	}
+	.right-column{ flex:1 20%;}
+
+	//shows
+	.shows{ @include row-wrap(flex-start); }
+	.shows-wrapper{
+		@include column(flex-start);
+		align-items:flex-start;
+		margin-bottom:16px;
+		h3{ margin-bottom: 24px; display:inline-block;}
+		.chip{margin-right:8px;}
+	}
+	footer{padding:0 32px;}
+}

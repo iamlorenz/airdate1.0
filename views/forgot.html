@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0">
+		<title>Airdate</title>
+
+		<!-- load stuff, remember to move js to the bottom when finished-->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+		<link rel="stylesheet" href="../static/css/style.min.css" />	
+		<script src="https://use.typekit.net/emv7ovo.js"></script>
+		<script>try{Typekit.load({ async: false });}catch(e){}</script>
+		<script src="../static/js/main.js"></script>
+	</head>	
+	<body>
+		<div class="popup">
+		    <img src="./static/images/airdatelogo.png" id="logo">
+		    <!-- show any messages that come back with authentication -->
+		    <div class="login-message">
+    		<% if (message.length > 0) { %>
+		        <div class="alert alert-warning"><%= message %></div>
+		    <% } %>
+		    </div>
+			 <form method="post" class="login">
+			 	<h3 style="margin-bottom:20px;">Forgot Your Password?</h3>
+		        <div class="login-email">
+		            <input type="text" name="email" placeholder="Your Email" autofocus>
+		        </div>
+		        <div class="login-submit">
+		        	<button type="submit" class="button button-primary">Reset Password</button>
+		        </div>
+		    </form>
+		</div>
+	</body>
+</html>
