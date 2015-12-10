@@ -1,6 +1,7 @@
 module.exports = function(app, passport){
   //load controllers
   var users = require('./controllers/users_controller.js');
+  var shows = require('./controllers/shows_controller.js');
 
 	//render index.html
 	app.get('/', function(req, res){
@@ -10,7 +11,7 @@ module.exports = function(app, passport){
 	});
 
   //process the login form
-	app.post('/loginUser', passport.authenticate('local-login', {
+	app.post('/login', passport.authenticate('local-login', {
         successRedirect : '/app', // redirect to the secure app section
         failureRedirect : '/#?login', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
@@ -23,15 +24,15 @@ module.exports = function(app, passport){
   // process the signup form
   app.post('/signup', passport.authenticate('local-signup', {
     successRedirect : '/app', // redirect to the secure app section
-    failureRedirect : '/signup', // redirect back to the signup page if there is an error
+    failureRedirect : '/#?signup', // redirect back to the signup page if there is an error
     failureFlash : true // allow flash messages
   }));
 
   app.get('/app', isLoggedIn, function(req, res) {
-    res.render('app.html', {
-      user : req.user,
-      cool : "justin bieber" // get the user out of session and pass to template
-    });
+      res.render('app.html', {
+        user : req.user,
+        message: req.flash('loginMessage')
+      });
   });
 
   app.get('/logout', function(req, res) {
@@ -50,6 +51,8 @@ module.exports = function(app, passport){
   app.post('/forgot', users.forgotPassword);
   app.get('/reset/:token', users.renderResetPassword);
   app.post('/reset/:token', users.resetPassword);
+  app.post('/addShow', shows.addShow);
+  app.get('/api/shows', shows.showsApi);
 
 };
 

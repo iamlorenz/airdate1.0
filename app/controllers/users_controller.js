@@ -70,12 +70,12 @@ exports.forgotPassword = function(req,res, next){
 exports.renderResetPassword = function(req,res){
 	User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
 	  if (!user) {
-	    req.flash('error', 'Password reset token is invalid or has expired.');
+	    req.flash('resetPasswordMessage', 'Password reset token is invalid or has expired.');
 	    return res.redirect('/forgot');
 	  }
 	  res.render('reset.html', {
 	    user: req.user,
-	    message: req.flash()
+	    message: req.flash('resetPasswordMessage')
 	  });
 	});
 };
@@ -87,7 +87,7 @@ exports.resetPassword = function(req,res, next){
       function(done) {
         User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
           if (!user) {
-            req.flash('error', 'Password reset token is invalid or has expired.');
+            req.flash('resetPasswordMessage', 'Password reset token is invalid or has expired.');
             return res.redirect('back');
           }
 
@@ -118,7 +118,7 @@ exports.resetPassword = function(req,res, next){
             'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
         };
         smtpTransport.sendMail(mailOptions, function(err) {
-          req.flash('success', 'Success! Your password has been changed.');
+          req.flash('loginMessage', 'Success! Your password has been changed.');
           done(err);
         });
       }
@@ -126,6 +126,5 @@ exports.resetPassword = function(req,res, next){
       res.redirect('/app');
     });
 };
-
 
 

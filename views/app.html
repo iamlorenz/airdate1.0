@@ -1,39 +1,47 @@
-<!-- views/profile.ejs -->
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-    <title>Node Authentication</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <style>
-        body        { padding-top:80px; word-wrap:break-word; }
-    </style>
-</head>
-<body>
-<div class="container">
+    <head lang="en">
 
-    <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-    </div>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0">
+        <title>Airdate</title>
 
-    <div class="row">
+        <!-- load stuff, remember to move js to the bottom when finished-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+        <link rel="stylesheet" href="../static/css/style.min.css" />    
+        <script src="https://use.typekit.net/emv7ovo.js"></script>
+        <script>try{Typekit.load({ async: false });}catch(e){}</script>
+        <script src="../static/js/main.js"></script>
 
-        <!-- LOCAL INFORMATION -->
-        <div class="col-sm-6">
-            <div class="well">
-                <h3><span class="fa fa-user"></span> Local</h3>
+    </head>
+    <body ng-app="airdate" ng-controller="mainController">
+        <div class="base">
 
-                    <p>
-                        <strong>email</strong>: <%= user.email %><br>
-                        <strong>who is cool</strong>: <%= cool %><br>
-                    </p>
-
-            </div>
+            <section class="header" ng-class="userShows.length == 0 ? 'noshows' : 'headershows'">   
+                <div class="head1">
+                    <a href="/"><img src="./static/images/airdatelogo.png" id="logo"></a>
+                </div>
+                <div class="nav head2">
+                    <div class="button button-regular"><%= user.email %></div>
+                </div>
+                <div class="headline" ng-if="userShows.length == 0">
+                    <h1>Get shedules for your favourite TV Shows. Add episodes to your calendar with just one click.</h1>
+                </div>
+                <div class="search head3">
+                    <form ng-submit="search()" >
+                        <input ng-model="searchTerm" placeholder="What TV Shows do you watch?" autofocus/>
+                        <div class="results" ng-hide="searching">
+                            <div class="result-item" ng-repeat="item in searchResults" 
+                                    ng-click="select(item.show.name, item.show.id, item.show.premiered)">
+                                <p class="result-name">{{ item.show.name }}</p>
+                                <p class="date">{{ item.show.premiered.substring(0,4) }}</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+            <section class="main" ng-include="'./static/partials/main.html'"></section>
         </div>
-
-    </div>
-
-</div>
-</body>
+        <footer ng-include="'./static/partials/footer.html'"></footer>
+    </body>
 </html>

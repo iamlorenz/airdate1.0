@@ -65,7 +65,7 @@
 	img:hover{ cursor:pointer;}
 	display: inline-block;
 }
-
+button:hover{cursor:pointer;}
 //shows =================
 .shows-container{ margin-bottom:24px;}
 .shows{
@@ -104,20 +104,20 @@
     transform: translate(-50%, 0);
 	background-color: #fff;
 	z-index:10;
-	padding:60px;
+	padding:55px 60px;
 }
 .login{
 	position:absolute;
-	bottom:60px;
+	bottom:55px;
 }
 .login-message{
-	margin-top:16px;
+	margin-top:18px;
 }
 #newpassword{
 	display:inline-block;
 	margin-left:-50px;
 }
-.login-submit{
+.popup-submit{
 	@include row-wrap(space-between);
 }
 
@@ -181,11 +181,11 @@ footer{
 	.right-column{ flex:1 20%;}
 
 	//shows
-	.shows{ @include row-wrap(flex-start); }
+	.shows{ @include row-wrap(flex-start);}
 	.shows-wrapper{
 		@include column(flex-start);
 		align-items:flex-start;
-		h3{ margin-bottom: 24px; display:inline-block;}
+		h3{ margin-bottom: 24px; display:inline-block;margin-right:20px;}
 		.chip{margin-right:8px;}
 	}
 	footer{padding:0 32px;}

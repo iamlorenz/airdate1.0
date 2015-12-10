@@ -1,0 +1,49 @@
+<div class="popup">
+
+	    <h2 id="popup-header" ng-bind="showLogin ? 'Login.' : 'Signup.' ">Login</h2>
+	    <img src="./static/images/clear.png" id="close" ng-click="showLogin = false; showSignup = false">
+	    <!-- show any messages that come back with authentication -->
+	    <div class="login-message">
+	    <% if (message.length > 0) { %>
+	        <div class="alert alert-warning"><%= message %></div>
+	    <% } %>
+	    </div>
+	   	<!-- login form -->
+		 <form action="/login" method="post" class="login" ng-show="showLogin">
+	        <div class="login-email">
+	            <input type="text" name="email" placeholder="Email">
+	        </div>
+	        <div class="login-password">
+	            <input type="password" name="password" placeholder="Password" style="padding-right:55px;">
+	           	<a href="/forgot" id="newpassword">Forgot?</a>
+	        </div>
+	        <div class="popup-submit">
+	        	<button type="submit" class="button button-primary">Log In</button>
+	        	<div id="noaccount">
+	        		<h5>Don't have an account?</h5>
+	        		<a ng-click="showSignup = true; showLogin = false">Sign Up.</a>
+	        	</div>
+	        </div>
+	    </form>
+
+	    <!-- sign up form -->
+		<form action="/signup" method="post" class="login" ng-show="showSignup">
+	        <div class="signup-email">
+	            <input type="text" name="email" placeholder="Email">
+	        </div>
+	        <div class="signup-password">
+	            <input type="password" name="password" placeholder="Password">
+	        </div>
+	        <div class="signup-password">
+	            <input type="password" placeholder="Confirm Password">
+	        </div>
+	        <div class="popup-submit">
+	        	<button type="submit" class="button button-primary">Sign Up</button>
+	        	<div id="noaccount">
+	        		<h5>Already have an account?</h5>
+	        		<a ng-click="showLogin = true; showSignup = false;">Log In.</a>
+	        	</div>
+	        </div>
+	    </form>
+
+</div>

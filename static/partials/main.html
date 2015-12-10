@@ -1,0 +1,71 @@
+<!-- ========================== MAIN ============================ -->
+<!-- ============================================================ -->
+<!-- Your Shows List -->
+<div class="shows-container">
+	<div class="shows" ng-if="userShows.length > 0">
+		<div class="shows-wrapper">
+			<h3>Your Shows </h3>
+			<div class="chip" ng-repeat="show in userShows | orderBy:'$index':true">
+				<p>{{  show.name }}</p>
+				<img src="./static/images/deleteicon.svg" ng-click="deleteShow(show)">
+			</div>
+		</div>
+		<!-- Save Button  -->
+		<a href="#" ng-click="showSignup = !showSignup"><div class="button button-primary">Save Shows</div></a>
+	</div>
+</div>
+
+<!-- Episodes List -->
+<div class="lists-container">
+	<div class="list episodelist" ng-if="userShows.length > 0" ng-repeat="show in userShows | orderBy:'$index':true">
+		<!-- headline -->
+		<div class="head">
+			<h3>{{ show.name }}</h3>
+			<p class="date">{{ show.started }}</p>
+		</div>
+
+		<!-- season selector -->
+		<div class="seasons">
+			<div class="chip" ng-repeat="season in show.seasons" 
+							ng-click="selectSeason($index);" toggle-class="selected">{{ $index+1 }}</div>
+			<div class="chip selected" toggle-class="selected">Upcoming</div>
+		</div>
+
+		<!-- old episodes -->
+		<div class="episodes" ng-if="selectedSeason > -1" ng-repeat="episode in show.seasons[selectedSeason]">
+			<div>
+				<p class="ep-number spacer">{{ episode.season }}.{{ episode.epInSeason }}</p>
+				<p class="ep-title">{{ episode.name }}</p>
+			</div>
+			<div>
+				<p class="date">{{ episode.airdate }}</p>
+				<p class="time">{{ episode.airtime }}</p>
+				<div class="spacer"></div>
+			</div>
+		</div>
+		<hr ng-if="selectedSeason > -1">
+		<!-- list of episodes -->
+		<div class="episodes" ng-repeat="episode in show.upcomingEpisodes">
+			<div>
+				<p class="ep-number spacer">{{ episode.season }}.{{ episode.epInSeason }}</p>
+				<p class="ep-title">{{ episode.name }}</p>
+			</div>
+			<div>
+				<p class="date">{{ episode.airdate }}</p>
+				<p class="time">{{ episode.airtime }}</p>
+				<div class="spacer"></div>
+			</div>
+			<!-- 
+			<div>
+				<p class="summary">{{ episode.summary }}</p>
+			</div> 
+			-->
+		</div>
+		<div class="add-all-episodes">
+			<div class="button button-regular">Add All Episodes to Calendar</div>
+		</div>
+	</div>	
+</div>
+
+<div class="right-column"></div>
+

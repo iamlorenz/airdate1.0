@@ -26,6 +26,10 @@ h1{
 	font-weight: 800;
 	line-height:34px;
 }
+h2{
+	font-size: 30px;
+	font-weight: 800;
+}
 h3{
 	font-size: 18px;
 	font-weight: 700;
@@ -75,7 +79,7 @@ input{
 		width: 250px;
 		border-bottom:1px solid $gray100;
 		font-size: 18px;
-		margin-bottom: 24px;
+		margin-bottom: 22px;
 	}
 }
 #newpassword{
@@ -127,6 +131,7 @@ hr{
 		color: $gray100;
 		float:right;
 	}
+	a:hover{color:$primary;cursor:pointer;}
 }
 
 //login
@@ -138,7 +143,8 @@ hr{
 	display: inline-block;
 }
 .alert-warning{
-	background-color: $gray20;
+	border-left:6px solid $red;
+	background-color: lighten($red, 33%);
 }
 
 //media queries

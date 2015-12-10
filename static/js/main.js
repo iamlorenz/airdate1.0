@@ -1,7 +1,7 @@
 //core.js
 app = angular.module('airdate',[])
 	.controller('mainController', ['$scope', '$http','$location', function($scope, $http, $location){
-		
+
 		// variables
 		$scope.searchResults = [];
 		$scope.userShows = [];
@@ -9,11 +9,42 @@ app = angular.module('airdate',[])
 		$scope.selectedSeason = -1;
 		$scope.toggle = false;
 		$scope.showLogin = false;
+		$scope.showSignup = false;
+		$scope.popupText = "";
+
+		if($scope.showLogin){
+			$scope.showSignup = false;
+		} else if ($scope.showSignup){
+			$scope.showLogin = false;
+		}
 
 		//show login pop up
-		if ($location.search()['login']){
+		if ($location.search()['login'])
 			$scope.showLogin = true;
-		}
+		else if ($location.search()['signup'])
+			$scope.showSignup = true;
+
+
+		//set $scope.userShows to the users shows whe he loggs in
+		$http.get('/api/shows')
+		.success(function(data){
+
+			for (var i = 0; i < data.length; i++) {
+				var userShow = data[i];
+				userShow.upcomingEpisodes = [];
+				userShow.pastEpisodes = [];
+				userShow.seasons = [];
+				//get the episodes
+				getEpisodes(userShow);
+				//add the selected show to the userShows array
+				$scope.userShows.push(userShow);
+			};
+
+			console.log($scope.userShows);
+
+		}).error(function(error){
+			console.log(error);
+		});
 
 		//search the tvmaze db for the right show
 		$scope.search = function() {
@@ -48,7 +79,10 @@ app = angular.module('airdate',[])
 			getEpisodes(userShow);
 			//add the selected show to the userShows array
 			$scope.userShows.push(userShow);
-			console.log($scope.userShows); //delete this line
+
+			//add the show to the DB if the user is logged in
+			$http.post('/addShow', {show : userShow});
+
 			userShow = "";
 		}
 
