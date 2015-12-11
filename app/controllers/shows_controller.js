@@ -3,28 +3,42 @@ var User        = mongoose.model('User');
 
 //add a show to MongoDB
 exports.addShow = function(req, res){
-  if (req.body.show.name.length > 0){
-    User.update({_id: req.session.passport.user},
-      {
-        $addToSet : { 
-          shows: { 
+  User.update({_id: req.session.passport.user},
+    {
+      $addToSet : { 
+        shows: { 
 
-            "name"    : req.body.show.name,
-            "id"      : req.body.show.id,
-            "started" : req.body.show.started  
+          "name"    : req.body.show.name,
+          "id"      : req.body.show.id,
+          "started" : req.body.show.started  
 
-          }
         }
-      },(function(err){
-        if (err)
-          res.send(err);
-        //else console.log
-        console.log(req.session.passport.user + ' just added ' + req.body.show.name + ' to his list.');  
-    }));
+      }
+    },(function(err){
+      if (err)
+        res.send(err);
+      //else console.log
+      console.log(req.session.passport.user + ' just added ' + req.body.show.name + ' to his db.');  
+  }));
+};
 
-  } else {
-    console.log('something went wrong.');
-  }
+//remove a show from the DB
+exports.rmShow = function(req, res){
+  User.update({_id: req.session.passport.user},
+    {
+      $pull : { 
+        shows: { 
+
+          id: req.body.showId
+
+        }
+      }
+    },(function(err){
+      if (err)
+        res.send(err);
+      //else console.log
+      console.log(req.session.passport.user + ' just deleted ' + req.body.showId + ' from his db.');  
+  }));
 };
 
 //send user shows to frontend

@@ -157,12 +157,19 @@ app = angular.module('airdate',[])
 			return userShow;
 		}
 
-		//delete a show from your list
+		//delete a show from your list and remove it from the db
 		$scope.deleteShow = function(show) {
 			var i = $scope.userShows.indexOf(show);
+			console.log(show.id);
 			if (i > -1){
 				$scope.userShows.splice(i, 1);
+				$http.post('/rmShow', {showId : show.id });
 			}
+		}
+
+		//delete a user account from the DB
+		$scope.deleteAccount = function(){
+			$http.post('/rmUser');
 		}
 
 		//select a season to watch

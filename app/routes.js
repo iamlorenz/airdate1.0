@@ -53,6 +53,7 @@ module.exports = function(app, passport){
   app.post('/reset/:token', users.resetPassword);
   app.post('/addShow', shows.addShow);
   app.get('/api/shows', shows.showsApi);
+  app.post('/rmShow', shows.rmShow);
 
 };
 
