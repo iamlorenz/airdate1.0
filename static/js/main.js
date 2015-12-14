@@ -2,16 +2,20 @@
 app = angular.module('airdate',[])
 	.controller('mainController', ['$scope', '$http','$location', function($scope, $http, $location){
 
-		// variables
+		// data variables
 		$scope.searchResults = [];
 		$scope.userShows = [];
 		$scope.watchlist = [];
 		$scope.searching = false;
 		$scope.selectedSeason = -1;
+
+		//ui variables
 		$scope.toggle = false;
 		$scope.showLogin = false;
 		$scope.showSignup = false;
 		$scope.popupText = "";
+		$scope.showWatchlist = true;
+		$scope.showShows = false;
 
 		if($scope.showLogin){
 			$scope.showSignup = false;
@@ -102,6 +106,7 @@ app = angular.module('airdate',[])
 					var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 					Episode.show = userShow.name;
+					Episode.showId = userShow.id;
 					Episode.airdate = monthNames[airdate.getMonth()] + " " + airdate.getDate() + ", " + airdate.getFullYear();
 					Episode.airtime = airdate.toTimeString().substring(0,5);
 					Episode.airstamp = data[i].airstamp;
@@ -165,10 +170,22 @@ app = angular.module('airdate',[])
 
 		//delete a show from your list and remove it from the db
 		$scope.deleteShow = function(show) {
-			var i = $scope.userShows.indexOf(show);
-			if (i > -1){
-				$scope.userShows.splice(i, 1);
+			var index = $scope.userShows.indexOf(show);
+			if (index > -1){
+				$scope.userShows.splice(index, 1);
 				$http.post('/rmShow', {showId : show.id });
+
+				//delete the show from the watchlist
+				for (var i = 0; i < $scope.watchlist.length; i++) {					
+					console.log($scope.watchlist[i]);
+					console.log(show.id);
+					if($scope.watchlist[i].showId == show.id){
+						$scope.watchlist.splice(i, 1);
+						i--;
+					}
+
+				};
+
 			}
 		}
 

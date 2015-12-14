@@ -79,7 +79,7 @@
 					<!-- <a href="#"><div class="button button-regular">Share</div></a> -->
 					<a href="#"><div class="button button-primary" ng-click="showLogin = !showLogin">Log In</div></a>
 				</div>
-				<div class="headline" ng-if="userShows.length == 0">
+				<div class="headline" ng-show="userShows.length == 0">
 					<h1>Get shedules for your favourite TV Shows. Add episodes to your calendar with just one click.</h1>
 				</div>
 				<div class="search head3">
@@ -96,6 +96,7 @@
 				</div>
 			</section>
 			<section class="main" ng-include="'./static/partials/main.html'"></section>
+
 		</div>
 		<footer ng-include="'./static/partials/footer.html'"></footer>
 	</body>

@@ -134,6 +134,41 @@ hr{
 	a:hover{color:$primary;cursor:pointer;}
 }
 
+.controls{
+	span{
+		font-weight: 800;
+		font-size: 13px;
+	}
+	span:hover{
+		cursor: pointer;
+	}
+}
+//switch
+.switch{
+	width:32px;
+	height:13px;
+	background-color:$selected;
+	margin-right:8px;
+	border-radius:40px;
+}
+#switch-handle{
+	width:13px;
+	height:13px;
+	background-color: $gray100;
+	border-radius:40px;
+	float:right;
+}
+#switch-handle:hover{
+	cursor:pointer;
+	width:15px;
+	height:15px;
+}
+.switch-off{
+	#switch-handle{ float:left;}
+	.switch{background-color:$regular;}
+	span{color:$gray80;}
+}
+
 //login
 .alert{
 	font-size:14px;

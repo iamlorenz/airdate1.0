@@ -69,12 +69,26 @@ button:hover{cursor:pointer;}
 //shows =================
 .shows-container{ margin-bottom:24px;}
 .shows{
+	@include row-wrap(flex-start);
 	.button{
 		max-width: 98px;
 	}
 }
+.controls-container{ 
+	width:100%;
+	@include row-wrap(flex-start);
+	order:2;
+}
+.controls{
+	@include row-wrap(flex-start);
+	align-items: center;
+	margin-bottom:8px;
+	margin-right:32px;
+}
 
 .shows-wrapper{
+	order:1;
+	margin-bottom:8px;
 	@include row-wrap(flex-start);
 	h3{ display:none;}
 	.chip{
@@ -183,6 +197,8 @@ footer{
 	//shows
 	.shows{ @include row-wrap(flex-start);}
 	.shows-wrapper{
+		order:3;
+		margin-top: 26px;
 		@include column(flex-start);
 		align-items:flex-start;
 		h3{ margin-bottom: 24px; display:inline-block;margin-right:20px;}

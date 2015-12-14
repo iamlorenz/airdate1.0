@@ -175,6 +175,41 @@ hr {
   color: #33AFFF;
   cursor: pointer; }
 
+.controls span {
+  font-weight: 800;
+  font-size: 13px; }
+
+.controls span:hover {
+  cursor: pointer; }
+
+.switch {
+  width: 32px;
+  height: 13px;
+  background-color: #FAE84D;
+  margin-right: 8px;
+  border-radius: 40px; }
+
+#switch-handle {
+  width: 13px;
+  height: 13px;
+  background-color: #2A2A2A;
+  border-radius: 40px;
+  float: right; }
+
+#switch-handle:hover {
+  cursor: pointer;
+  width: 15px;
+  height: 15px; }
+
+.switch-off #switch-handle {
+  float: left; }
+
+.switch-off .switch {
+  background-color: #ECECEC; }
+
+.switch-off span {
+  color: #9D9D9D; }
+
 .alert {
   font-size: 14px;
   padding: 8px 14px;
@@ -303,10 +338,55 @@ button:hover {
 .shows-container {
   margin-bottom: 24px; }
 
-.shows .button {
-  max-width: 98px; }
+.shows {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-box-pack: flex-start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: flex-start;
+  justify-content: flex-start; }
+  .shows .button {
+    max-width: 98px; }
+
+.controls-container {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-box-pack: flex-start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: flex-start;
+  justify-content: flex-start;
+  order: 2; }
+
+.controls {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-box-pack: flex-start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: flex-start;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 8px;
+  margin-right: 32px; }
 
 .shows-wrapper {
+  order: 1;
+  margin-bottom: 8px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -472,6 +552,8 @@ footer {
     -ms-flex-pack: flex-start;
     justify-content: flex-start; }
   .shows-wrapper {
+    order: 3;
+    margin-top: 26px;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
