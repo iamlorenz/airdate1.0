@@ -12,7 +12,25 @@ function generateHash(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
+//delete User Account
+exports.deleteUser = function(req,res){
+  User.findOne({_id: req.session.passport.user})
+  .exec(function(err, user){
 
+    if (user){
+
+      user.remove(function(){
+        req.logout(function(){
+          res.redirect('/');
+        });
+      });
+
+    } else {
+      console.log("User not found!");
+    }
+
+  });
+};
 
 //give the user the chance to set a new password ============================
 exports.forgotPassword = function(req,res, next){

@@ -5,6 +5,7 @@ app = angular.module('airdate',[])
 		// variables
 		$scope.searchResults = [];
 		$scope.userShows = [];
+		$scope.watchlist = [];
 		$scope.searching = false;
 		$scope.selectedSeason = -1;
 		$scope.toggle = false;
@@ -98,9 +99,12 @@ app = angular.module('airdate',[])
 					var Episode = {};
 					var airdate = new Date(data[i].airstamp);
 					var now = new Date();
+					var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-					Episode.airdate = airdate.getMonth() + "." + airdate.getDate() + "." + airdate.getFullYear().toString().substring(2,4);
+					Episode.show = userShow.name;
+					Episode.airdate = monthNames[airdate.getMonth()] + " " + airdate.getDate() + ", " + airdate.getFullYear();
 					Episode.airtime = airdate.toTimeString().substring(0,5);
+					Episode.airstamp = data[i].airstamp;
 				    Episode.name = data[i].name;
 				    Episode.season = data[i].season;
 				    Episode.runtime = data[i].runtime;
@@ -112,9 +116,11 @@ app = angular.module('airdate',[])
 				    	Episode.epInSeason = data[i].number;
 				    }
 
-				    //if airdate is in the future, add to upcomingEpisodes array
+				    //if airdate is in the future, add to upcomingEpisodes array and watchlist array
 					if (airdate > now){
 				    	userShow.upcomingEpisodes.push(Episode);
+				    	$scope.watchlist.push(Episode);
+
 					} else { 
 						userShow.pastEpisodes.push(Episode);			    
 					}
@@ -160,7 +166,6 @@ app = angular.module('airdate',[])
 		//delete a show from your list and remove it from the db
 		$scope.deleteShow = function(show) {
 			var i = $scope.userShows.indexOf(show);
-			console.log(show.id);
 			if (i > -1){
 				$scope.userShows.splice(i, 1);
 				$http.post('/rmShow', {showId : show.id });
@@ -169,7 +174,7 @@ app = angular.module('airdate',[])
 
 		//delete a user account from the DB
 		$scope.deleteAccount = function(){
-			$http.post('/rmUser');
+			$http.post('/user/delete');
 		}
 
 		//select a season to watch

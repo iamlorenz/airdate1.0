@@ -48,6 +48,7 @@ module.exports = function(app, passport){
     });
   });
 
+  app.post('/user/delete', users.deleteUser);
   app.post('/forgot', users.forgotPassword);
   app.get('/reset/:token', users.renderResetPassword);
   app.post('/reset/:token', users.resetPassword);

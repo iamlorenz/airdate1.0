@@ -382,8 +382,7 @@ button:hover {
 footer {
   padding: 0 12px;
   height: 56px;
-  background-color: #FBFBFB;
-  border-top: 1px solid #F4F4F4;
+  background-color: #ffffff;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -449,7 +448,7 @@ footer {
     flex: 5 100%;
     margin: 65px 0; }
   .main {
-    margin-top: 80px; }
+    margin-top: 120px; }
   .search-header {
     display: inline; }
   .lists-container {

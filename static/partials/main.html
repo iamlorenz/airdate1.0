@@ -11,12 +11,41 @@
 			</div>
 		</div>
 		<!-- Save Button  -->
-		<a href="#" ng-click="showSignup = !showSignup"><div class="button button-primary">Save Shows</div></a>
+<!-- 		<a href="#" ng-click="showSignup = !showSignup"><div class="button button-primary">Save Shows</div></a> -->
 	</div>
 </div>
 
-<!-- Episodes List -->
+<!-- Lists -->
 <div class="lists-container">
+
+	<!-- Watchlist -->
+	<div class="list episodelist" ng-if="userShows.length > 0">
+		<!-- headline -->
+		<div class="head">
+			<h3>Watchlist</h3>
+		</div>
+
+		<!-- shows selector -->
+		<div class="seasons">
+			<div class="chip selected" ng-repeat="show in userShows" toggle-class="selected">{{ show.name }}</div>
+		</div>
+
+		<!-- list of upcoming episodes -->
+		<div class="episodes" ng-repeat="episode in watchlist | orderBy:'airstamp'">
+			<div>
+				<p class="ep-number spacer">{{ episode.season }}.{{ episode.epInSeason }}</p>
+				<p class="ep-title">{{ episode.show }}</p>
+			</div>
+			<div>
+				<p class="date">{{ episode.airdate }}</p>
+				<p class="time">{{ episode.airtime }}</p>
+				<div class="spacer"></div>
+			</div>
+		</div>
+	</div>	
+
+
+	<!-- Episodes List -->
 	<div class="list episodelist" ng-if="userShows.length > 0" ng-repeat="show in userShows | orderBy:'$index':true">
 		<!-- headline -->
 		<div class="head">
@@ -61,10 +90,11 @@
 			</div> 
 			-->
 		</div>
-		<div class="add-all-episodes">
+<!-- 		<div class="add-all-episodes">
 			<div class="button button-regular">Add All Episodes to Calendar</div>
 		</div>
-	</div>	
+ -->	</div>	
+
 </div>
 
 <div class="right-column"></div>
