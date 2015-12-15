@@ -6,8 +6,10 @@ app = angular.module('airdate',[])
 		$scope.searchResults = [];
 		$scope.userShows = [];
 		$scope.watchlist = [];
+		$scope.recentEpisodes = [];
 		$scope.searching = false;
 		$scope.selectedSeason = -1;
+		$scope.userDays = 14;
 
 		//ui variables
 		$scope.toggle = false;
@@ -43,8 +45,6 @@ app = angular.module('airdate',[])
 				//add the selected show to the userShows array
 				$scope.userShows.push(userShow);
 			};
-
-			console.log($scope.userShows);
 
 		}).error(function(error){
 			console.log(error);
@@ -83,7 +83,6 @@ app = angular.module('airdate',[])
 			getEpisodes(userShow);
 			//add the selected show to the userShows array
 			$scope.userShows.push(userShow);
-
 			//add the show to the DB if the user is logged in
 			$http.post('/addShow', {show : userShow});
 
@@ -103,6 +102,8 @@ app = angular.module('airdate',[])
 					var airdate = new Date(data[i].airstamp);
 					var now = new Date();
 					var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+					//get the date the recentDate by subtracting (one day in ms * the days the user selected) from todays date
+					var recentDate = new Date(+now - (8.64e7 * $scope.userDays)); 
 
 					Episode.show = userShow.name;
 					Episode.showId = userShow.id;
@@ -125,6 +126,11 @@ app = angular.module('airdate',[])
 					if (airdate > now){
 				    	userShow.upcomingEpisodes.push(Episode);
 				    	$scope.watchlist.push(Episode);
+
+				    //if airdate is in the bufferzone add it it to the recentEpisodes and past episdoes array
+				    } else if (airdate < now && airdate > recentDate) {	
+				    	$scope.recentEpisodes.push(Episode);
+				    	userShow.pastEpisodes.push(Episode);
 
 					} else { 
 						userShow.pastEpisodes.push(Episode);			    
@@ -177,8 +183,6 @@ app = angular.module('airdate',[])
 
 				//delete the show from the watchlist
 				for (var i = 0; i < $scope.watchlist.length; i++) {					
-					console.log($scope.watchlist[i]);
-					console.log(show.id);
 					if($scope.watchlist[i].showId == show.id){
 						$scope.watchlist.splice(i, 1);
 						i--;
