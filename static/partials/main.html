@@ -10,12 +10,6 @@
                 </div>
                 <span ng-click="showWatchlist = !showWatchlist">Watchlist</span>
             </div>
-            <div class="controls" ng-class="{'switch-off': showShows==false}">
-                <div class="switch" ng-click="showShows = !showShows">
-                    <div id="switch-handle"></div>
-                </div>
-                <span ng-click="showShows = !showShows">Shows</span>
-            </div>
         </div>
         <div class="shows-wrapper">
             <!-- <h3>Your Shows </h3> -->
@@ -50,7 +44,7 @@
 
 
 <!-- Shows List -->
-<div class="list episodelist" ng-if="userShows.length > 0 && showShows" ng-repeat="show in userShows | orderBy:'$index':true">
+<div class="list episodelist" ng-show="userShows.length > 0 && !showWatchlist" ng-repeat="show in userShows | orderBy:'$index':true">
 	<!-- headline -->
 	<div class="head">
 		<h3>{{ show.name }}</h3>

@@ -15,7 +15,6 @@ app = angular.module('airdate',[])
 		$scope.showSignup = false;
 		$scope.popupText = "";
 		$scope.showWatchlist = true;
-		$scope.showShows = false;
 
 		if($scope.showLogin){
 			$scope.showSignup = false;
@@ -114,6 +113,7 @@ app = angular.module('airdate',[])
 				    Episode.season = data[i].season;
 				    Episode.runtime = data[i].runtime;
 				    Episode.summary = data[i].summary.substring(3, data[i].summary.length - 4);
+				    Episode.watched = false;
 
 				    if (data[i].number < 10){
 				    	Episode.epInSeason = "0" + data[i].number;
