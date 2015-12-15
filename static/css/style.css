@@ -262,10 +262,12 @@ hr {
 
 .search input {
   width: 100%;
-  background: url(/static/images/searchicon.svg) no-repeat scroll 0px 3px;
+  background: url(/static/images/searchicon.svg) no-repeat scroll 16px 16px;
   background-size: 16px;
-  padding: 0 16px 8px 30px;
-  margin-bottom: 0; }
+  padding: 14px 16px 14px 48px;
+  border: 1px solid #E1E1E1;
+  border-radius: 3px;
+  z-index: 10; }
 
 .results {
   position: absolute;
@@ -497,12 +499,13 @@ footer {
 @media screen and (min-width: 740px) {
   .base {
     padding: 48px 32px; }
-  .headershows .head1, .headershows .head2 {
-    flex: 1 20%; }
+  .headershows .head1 {
+    flex: 3 30%; }
   .headershows .head2 {
-    order: 3; }
+    order: 3;
+    flex: 1 7%; }
   .headershows .head3 {
-    flex: 3 60%;
+    flex: 6 63%;
     margin: 0;
     padding: 0 40px; }
   .headershows .headline {
@@ -532,13 +535,13 @@ footer {
   .search-header {
     display: inline; }
   .lists-container {
-    flex: 3 60%; }
+    flex: 13 63%; }
   .shows-container {
-    flex: 1 20%;
+    flex: 6 30%;
     display: inline;
     margin-bottom: 0; }
   .right-column {
-    flex: 1 20%; }
+    flex: 1 7%; }
   .shows {
     display: -webkit-box;
     display: -webkit-flex;

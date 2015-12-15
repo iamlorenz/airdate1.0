@@ -20,20 +20,20 @@
 .search{
 	input{
 		width: 100%;
-		background: url(/static/images/searchicon.svg) no-repeat scroll 0px 3px;
+		background: url(/static/images/searchicon.svg) no-repeat scroll 16px 16px;
 		background-size:16px;
-		padding: 0 16px 8px 30px;
-		margin-bottom: 0;
+		padding: 14px 16px 14px 48px;
+		border: 1px solid $gray60;
+		border-radius:3px;
+		z-index: 10;
 	}
 }
 .results{
 	position:absolute;
 	width:100%;
-	// border:1px solid $gray60; 
+	//border:1px solid $gray60; 
 	// border-top:none;
 	// -webkit-box-shadow: 0px 2px 4px 0px rgba(209,209,209,0.6);
-	// -moz-box-shadow: 0px 2px 4px 0px rgba(209,209,209,0.6);
-	// box-shadow: 0px 2px 4px 0px rgba(209,209,209,0.6);
 }
 .result-item{
 	@include row-wrap(space-between);
@@ -162,9 +162,9 @@ footer{
 
 	//header when a userShows.length > 0
 	.headershows{
-		.head1,.head2{ flex:1 20%;}
-		.head2{order:3;}
-		.head3{ flex:3 60%;margin:0;padding:0 40px;}
+		.head1{ flex:3 30%;}
+		.head2{order:3; flex:1 7%;}
+		.head3{ flex:6 63%;margin:0;padding:0 40px;}
 		.headline{ order:4;flex: 3 100%;}
 		.results{padding-right:80px;}
 	}
@@ -186,13 +186,13 @@ footer{
 
 	.main{margin-top: 120px;}
 	.search-header{ display:inline; }
-	.lists-container { flex:3 60%;}
+	.lists-container { flex:13 63%;}
 	.shows-container{ 
-		flex: 1 20%; 
+		flex: 6 30%; 
 		display:inline;
 		margin-bottom: 0;
 	}
-	.right-column{ flex:1 20%;}
+	.right-column{ flex:1 7%;}
 
 	//shows
 	.shows{ @include row-wrap(flex-start);}
