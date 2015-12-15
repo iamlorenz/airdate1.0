@@ -41,7 +41,8 @@ body, html {
   font-weight: 700;
   padding: 8px 14px;
   color: #2A2A2A;
-  border: none; }
+  border: none;
+  border-radius: 2px; }
 
 .button-primary {
   background-color: #33AFFF; }
@@ -248,6 +249,12 @@ hr {
   align-items: center;
   margin-bottom: 30px; }
 
+#top {
+  position: absolute;
+  top: 0;
+  border: 1px solid red;
+  width: 100%; }
+
 .head1, .head2 {
   flex: 1 50%; }
 
@@ -268,6 +275,9 @@ hr {
   border: 1px solid #E1E1E1;
   border-radius: 3px;
   z-index: 10; }
+
+.search input:focus {
+  border: 1px solid #33AFFF; }
 
 .results {
   position: absolute;
@@ -503,11 +513,12 @@ footer {
     flex: 3 30%; }
   .headershows .head2 {
     order: 3;
-    flex: 1 7%; }
+    flex: 1 9%;
+    align-self: flex-start; }
   .headershows .head3 {
-    flex: 6 63%;
-    margin: 0;
-    padding: 0 40px; }
+    flex: 6 61%;
+    padding: 0 40px;
+    margin: 0; }
   .headershows .headline {
     order: 4;
     flex: 3 100%; }
@@ -515,7 +526,9 @@ footer {
     padding-right: 80px; }
   .noshows .head1 {
     order: 3;
-    flex: 2 30%; }
+    flex: 2 30%;
+    align-self: flex-end;
+    margin-bottom: 6px; }
   .noshows .head2 {
     order: 1;
     flex: 5 100%; }
@@ -531,17 +544,17 @@ footer {
     flex: 5 100%;
     margin: 65px 0; }
   .main {
-    margin-top: 120px; }
+    margin-top: 90px; }
   .search-header {
     display: inline; }
   .lists-container {
-    flex: 13 63%; }
+    flex: 13 62%; }
   .shows-container {
     flex: 6 30%;
     display: inline;
     margin-bottom: 0; }
   .right-column {
-    flex: 1 7%; }
+    flex: 1 8%; }
   .shows {
     display: -webkit-box;
     display: -webkit-flex;
@@ -672,7 +685,7 @@ footer {
 
 @media screen and (min-width: 480px) {
   .list .head {
-    margin: 0 40px 8px 40px; }
+    margin: 0 40px; }
   .list .seasons, .list .summary {
     margin: 0px 40px 4px 40px; }
   .list .episodes .spacer {

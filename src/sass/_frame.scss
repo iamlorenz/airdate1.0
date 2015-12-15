@@ -27,6 +27,9 @@
 		border-radius:3px;
 		z-index: 10;
 	}
+	input:focus{
+		border:1px solid $primary;
+	}
 }
 .results{
 	position:absolute;
@@ -163,8 +166,16 @@ footer{
 	//header when a userShows.length > 0
 	.headershows{
 		.head1{ flex:3 30%;}
-		.head2{order:3; flex:1 7%;}
-		.head3{ flex:6 63%;margin:0;padding:0 40px;}
+		.head2{
+			order:3;
+			flex:1 9%;
+			align-self:flex-start;
+		}
+		.head3{ 
+			flex:6 61%;
+			padding:0 40px;
+			margin:0;
+		}
 		.headline{ order:4;flex: 3 100%;}
 		.results{padding-right:80px;}
 	}
@@ -174,6 +185,8 @@ footer{
 		.head1 { 
 			order:3;
 			flex:2 30%;
+			align-self:flex-end;
+			margin-bottom: 6px;
 		}
 		.head2 { order:1; flex:5 100%;}
 		.head3 { order: 4; flex:3 60%;form{ max-width:500px;.results{max-width:500px;}}}
@@ -184,15 +197,15 @@ footer{
 		}
 	}
 
-	.main{margin-top: 120px;}
+	.main{margin-top: 90px;}
 	.search-header{ display:inline; }
-	.lists-container { flex:13 63%;}
+	.lists-container { flex:13 62%;}
 	.shows-container{ 
 		flex: 6 30%; 
 		display:inline;
 		margin-bottom: 0;
 	}
-	.right-column{ flex:1 7%;}
+	.right-column{ flex:1 8%;}
 
 	//shows
 	.shows{ @include row-wrap(flex-start);}
