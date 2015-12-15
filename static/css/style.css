@@ -647,6 +647,8 @@ footer {
         justify-content: flex-end; }
       .list .episodes .spacer {
         display: none; }
+    .list .recent-episodes {
+      background-color: #F4F4F4; }
     .list .add-all-episodes {
       display: -webkit-box;
       display: -webkit-flex;
@@ -667,7 +669,7 @@ footer {
 
 @media screen and (min-width: 480px) {
   .list .head {
-    margin: 0 40px; }
+    margin: 0 40px 8px 40px; }
   .list .seasons, .list .summary {
     margin: 0px 40px 4px 40px; }
   .list .episodes .spacer {

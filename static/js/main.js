@@ -187,7 +187,14 @@ app = angular.module('airdate',[])
 						$scope.watchlist.splice(i, 1);
 						i--;
 					}
+				};
 
+				//delete the show from the recentEpisodes array
+				for (var i = 0; i < $scope.recentEpisodes.length; i++) {					
+					if($scope.recentEpisodes[i].showId == show.id){
+						$scope.recentEpisodes.splice(i, 1);
+						i--;
+					}
 				};
 
 			}

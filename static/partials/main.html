@@ -29,7 +29,7 @@
 		<h3>Watchlist</h3>
 	</div>
 	<!-- list of recent episodes -->
-	<div class="episodes recent-episodes" ng-repeat="episode in recentEpisodes | orderBy:'airstamp'">
+	<div class="episodes" ng-repeat="episode in recentEpisodes | orderBy:'airstamp'">
 		<div>
 			<p class="ep-number spacer">{{ episode.season }}.{{ episode.epInSeason }}</p>
 			<p class="ep-title">{{ episode.show }}</p>
@@ -40,6 +40,7 @@
 			<div class="spacer"></div>
 		</div>
 	</div>
+	<hr>
 	<!-- list of upcoming episodes -->
 	<div class="episodes" ng-repeat="episode in watchlist | orderBy:'airstamp'">
 		<div>
