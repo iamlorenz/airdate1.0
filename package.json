@@ -1,7 +1,7 @@
 {
   "name": "airdate",
   "main": "server.js",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Get an overview of your TV shows. Add your TV shows to your calendar with one click.",
   "author": "Lorenz Schimik",
   "dependencies": {
