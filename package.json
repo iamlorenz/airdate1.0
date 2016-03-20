@@ -34,5 +34,8 @@
     "gulp-ruby-sass": "^2.0.5",
     "gulp-sass": "^2.1.0",
     "gulp-uglify": "^1.4.2"
+  },
+  "engines": {
+    "node": "0.12.0"
   }
 }
