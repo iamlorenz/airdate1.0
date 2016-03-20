@@ -24,22 +24,29 @@
 
 <div class="lists-container">
 	<!-- Watchlist -->
-	<div class="list episodelist" ng-if="userShows.length > 0 && showWatchlist">
+	<div class="list watchlist" ng-if="userShows.length > 0 && showWatchlist" >
 		<!-- headline -->
 		<div class="head">
+			<img src="./static/images/watchlist.svg" id="watchlist-icon" alt="watchlist icon">
 			<h3>Watchlist</h3>
+			<img src="./static/images/eye.svg" id="watched-icon" alt="eye icon">
 		</div>
 		<!-- list of recent episodes -->
 		<div class="episodes" ng-repeat="episode in recentEpisodes | orderBy:'airstamp'">
-			<div>
+			<div ng-class="{'hide-episode': episode.watched}" class="hide-trans">
 				<p class="ep-number spacer">{{ episode.season }}.{{ episode.epInSeason }}</p>
 				<p class="ep-title">{{ episode.show }}</p>
 			</div>
 			<div>
-				<p class="date">{{ episode.airdate }}</p>
-				<p class="time">{{ episode.airtime }}</p>
+				<p class="date hide-trans" ng-class="{'hide-episode': episode.watched}">{{ episode.airdate }}</p>
+				<p class="time hide-trans" ng-class="{'hide-episode': episode.watched}">{{ episode.airtime }}</p>
 				<div class="spacer">
-					<input type="radio">
+					<input type="checkbox" id="watched{{$index}}" class="watched-active" ng-click="episode.watched = !episode.watched">
+					<label for="watched{{$index}}">
+						<span id="outter">
+							<span id="inner"></span>
+						</span>
+					</label>
 				</div>
 			</div>
 		</div>
@@ -69,8 +76,7 @@
 
 		<!-- season selector -->
 		<div class="seasons">
-			<div class="chip" ng-repeat="season in show.seasons" 
-							ng-click="selectSeason($index);" toggle-class="selected">{{ $index+1 }}</div>
+			<div class="chip" ng-repeat="season in show.seasons" ng-click="selectSeason($index);" toggle-class="selected">{{ $index+1 }}</div>
 			<div class="chip selected" toggle-class="selected">Upcoming</div>
 		</div>
 

@@ -37,16 +37,48 @@
 		}
 		hr{ margin: 8px 0;}
 	}
+
+	//watchlist
+	.watchlist{
+
+		.head{
+			border-bottom:none;
+			@include row-wrap(flex-start);
+			padding-bottom:16px;
+			align-items: center;
+		}
+		#watchlist-icon{
+			margin-right: 12px;
+			height:16px;
+		}
+		#watched-icon{
+			margin-left: auto;
+			margin-right: 8px;
+			width:16px;
+		}
+
+	}
+
+
+
+
 }
 //show episode numbers
 @media screen and (min-width: 480px) {
 	.list{
-			.head{ margin:0 40px;}
-			.seasons, .summary{margin: 0px 40px 4px 40px;}
-			.episodes{ .spacer{ width: 40px; display:inline;}}
-			.add-all-episodes{ margin:4px 40px 0 40px;}
-			hr{ margin: 8px 40px;}
-		}
+
+		.head{ margin:0 40px;}
+		.seasons, .summary{margin: 0px 40px 4px 40px;}
+		.episodes{ .spacer{ width: 40px; display:inline;}}
+		.add-all-episodes{ margin:4px 40px 0 40px;}
+		hr{ margin: 8px 40px;}
+
+	}
+	.watchlist{
+		.head{ margin:0; }
+		#watchlist-icon{ height:22px;margin-left:8px;}
+
+	}
 }
 
 

@@ -13,9 +13,31 @@
 	margin-bottom:30px;
 }
 .head1,.head2{ flex: 1 50%;}
+.head2{ position: relative;}
 .head3{ flex: 2 100%;margin-top:24px;position:relative;}
 
 .headline{ margin:30px 0;flex: 2 100%;}
+
+.head2:hover > .drop-down{
+	display: block;
+}
+
+.drop-down{
+	display: none;
+	background-color: #fff;
+	border: 1px solid $gray60;
+	border-radius: 2px;
+	padding: 0px 12px 12px 12px;
+	position: absolute;
+	top: 30px;
+	left: 10px;
+	box-shadow: 0 0 4px #F0EAEA;
+	a{
+		color: $gray100;
+		font:bold 13px/1 "acumin-pro-semi-condensed";
+		text-align: center;
+	}
+}
 
 .search{
 	input{
@@ -29,24 +51,24 @@
 	}
 	input:focus{
 		border:1px solid $primary;
+		-webkit-transition:border 0.4s linear;
 	}
 }
+
 .results{
 	position:absolute;
 	width:100%;
-	//border:1px solid $gray60; 
-	// border-top:none;
-	// -webkit-box-shadow: 0px 2px 4px 0px rgba(209,209,209,0.6);
+	border:1px solid $primary; 
+	border-top:none;
+	border-bottom:none;
+	-webkit-box-shadow: 0px 2px 4px 0px rgba(209,209,209,0.6);
 }
 .result-item{
 	@include row-wrap(space-between);
 	align-items:center;
 	background-color: $gray20;
-	border-bottom: 1px solid $gray60;
+	border-bottom: 1px solid $primary;
 	padding: 12px 30px;
-}
-.result-item:last-child{
-	border-bottom: none;
 }
 .result-item:hover{
 	background-color: $regular;
@@ -173,11 +195,9 @@ footer{
 		}
 		.head3{ 
 			flex:6 61%;
-			padding:0 40px;
 			margin:0;
 		}
 		.headline{ order:4;flex: 3 100%;}
-		.results{padding-right:80px;}
 	}
 
 	//header for start page

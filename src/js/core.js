@@ -85,6 +85,7 @@ app = angular.module('airdate',[])
 			$scope.userShows.push(userShow);
 			//add the show to the DB if the user is logged in
 			$http.post('/addShow', {show : userShow});
+			console.log(userShow.pastEpisodes);
 
 			userShow = "";
 		}

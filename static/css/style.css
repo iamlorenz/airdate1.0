@@ -36,6 +36,9 @@ a {
 body, html {
   height: 100%; }
 
+ul {
+  list-style-type: none; }
+
 .button {
   font-size: 13px;
   font-weight: 700;
@@ -222,10 +225,54 @@ hr {
   border-left: 6px solid #EF4C4C;
   background-color: #fde6e6; }
 
+input[type="checkbox"] {
+  display: none; }
+
+input[type="checkbox"] + label #outter {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: -2px 10px 0 10px;
+  vertical-align: middle;
+  cursor: pointer;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 1px solid #DADADA; }
+
+input[type="checkbox"] + label #inner {
+  display: none;
+  width: 6px;
+  height: 6px;
+  margin: 0 0 9px 2px;
+  vertical-align: middle;
+  cursor: pointer;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  background-color: #2A2A2A; }
+
+input[type="checkbox"]:checked + label #outter {
+  border: 1px solid #2A2A2A; }
+
+input[type="checkbox"]:checked + label #inner {
+  display: inline-block; }
+
+input[type="checkbox"]:checked + label #outter {
+  -webkit-transition: background-color 0.4s linear;
+  -webkit-transition: border 0.4s linear; }
+
+.hide-episode {
+  opacity: 0.3; }
+
+.hide-trans {
+  -webkit-transition: opacity 0.4s linear; }
+
 @media screen and (min-width: 600px) {
   h1 {
     font-size: 46px;
-    line-height: 48px; } }
+    line-height: 48px; }
+  h3 {
+    font-size: 22px; } }
 
 .base {
   padding: 24px 12px;
@@ -249,14 +296,11 @@ hr {
   align-items: center;
   margin-bottom: 30px; }
 
-#top {
-  position: absolute;
-  top: 0;
-  border: 1px solid red;
-  width: 100%; }
-
 .head1, .head2 {
   flex: 1 50%; }
+
+.head2 {
+  position: relative; }
 
 .head3 {
   flex: 2 100%;
@@ -266,6 +310,24 @@ hr {
 .headline {
   margin: 30px 0;
   flex: 2 100%; }
+
+.head2:hover > .drop-down {
+  display: block; }
+
+.drop-down {
+  display: none;
+  background-color: #fff;
+  border: 1px solid #E1E1E1;
+  border-radius: 2px;
+  padding: 0px 12px 12px 12px;
+  position: absolute;
+  top: 30px;
+  left: 10px;
+  box-shadow: 0 0 4px #F0EAEA; }
+  .drop-down a {
+    color: #2A2A2A;
+    font: bold 13px/1 "acumin-pro-semi-condensed";
+    text-align: center; }
 
 .search input {
   width: 100%;
@@ -277,11 +339,16 @@ hr {
   z-index: 10; }
 
 .search input:focus {
-  border: 1px solid #33AFFF; }
+  border: 1px solid #33AFFF;
+  -webkit-transition: border 0.4s linear; }
 
 .results {
   position: absolute;
-  width: 100%; }
+  width: 100%;
+  border: 1px solid #33AFFF;
+  border-top: none;
+  border-bottom: none;
+  -webkit-box-shadow: 0px 2px 4px 0px rgba(209, 209, 209, 0.6); }
 
 .result-item {
   display: -webkit-box;
@@ -297,11 +364,8 @@ hr {
   justify-content: space-between;
   align-items: center;
   background-color: #F4F4F4;
-  border-bottom: 1px solid #E1E1E1;
+  border-bottom: 1px solid #33AFFF;
   padding: 12px 30px; }
-
-.result-item:last-child {
-  border-bottom: none; }
 
 .result-item:hover {
   background-color: #ECECEC;
@@ -517,13 +581,10 @@ footer {
     align-self: flex-start; }
   .headershows .head3 {
     flex: 6 61%;
-    padding: 0 40px;
     margin: 0; }
   .headershows .headline {
     order: 4;
     flex: 3 100%; }
-  .headershows .results {
-    padding-right: 80px; }
   .noshows .head1 {
     order: 3;
     flex: 2 30%;
@@ -681,7 +742,29 @@ footer {
       padding: 8px 0;
       margin: 4px 0 0 0; }
     .list hr {
-      margin: 8px 0; } }
+      margin: 8px 0; }
+  .watchlist .head {
+    border-bottom: none;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -webkit-box-pack: flex-start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: flex-start;
+    justify-content: flex-start;
+    padding-bottom: 16px;
+    align-items: center; }
+  .watchlist #watchlist-icon {
+    margin-right: 12px;
+    height: 16px; }
+  .watchlist #watched-icon {
+    margin-left: auto;
+    margin-right: 8px;
+    width: 16px; } }
 
 @media screen and (min-width: 480px) {
   .list .head {
@@ -694,7 +777,12 @@ footer {
   .list .add-all-episodes {
     margin: 4px 40px 0 40px; }
   .list hr {
-    margin: 8px 40px; } }
+    margin: 8px 40px; }
+  .watchlist .head {
+    margin: 0; }
+  .watchlist #watchlist-icon {
+    height: 22px;
+    margin-left: 8px; } }
 
 body {
   font-family: "acumin-pro-semi-condensed",arial, verdana, sans-serif;

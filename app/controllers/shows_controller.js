@@ -10,7 +10,7 @@ exports.addShow = function(req, res){
 
           "name"    : req.body.show.name,
           "id"      : req.body.show.id,
-          "started" : req.body.show.started  
+          "started" : req.body.show.started
 
         }
       }

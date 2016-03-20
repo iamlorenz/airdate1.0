@@ -6,6 +6,7 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 }
 a{text-decoration:none;}
 body,html{height:100%;}
+ul{   list-style-type: none;}
 
 //mixins
 @mixin row-wrap($content) {
@@ -56,6 +57,8 @@ $green:     #9DFA4D;
 @import "_theme.scss";
 @import "_frame.scss";
 @import "_table.scss";
+
+$font: "acumin-pro-semi-condensed";
 
 body{
 	font-family: "acumin-pro-semi-condensed",arial, verdana, sans-serif;
