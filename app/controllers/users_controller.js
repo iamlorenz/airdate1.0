@@ -5,6 +5,7 @@ var bcrypt      = require('bcrypt-nodejs');
 var mongoose    = require('mongoose');
 var User        = mongoose.model('User'); 
 var nodemailer  = require('nodemailer');
+var emailConfig = require('../../config/email_config');
 
 //helper functions
 //encrypt the password after a password reset
@@ -60,13 +61,13 @@ exports.forgotPassword = function(req,res, next){
         var smtpTransport = nodemailer.createTransport('SMTP', {
           service: 'Gmail',
           auth: {
-            user: 'email',
-            pass: 'password'
+            user: emailConfig.email,
+            pass: emailConfig.password
           }
         });
         var mailOptions = {
           to: user.email,
-          from: 'email',
+          from: emailConfig.email,
           subject: 'Airdate Password Reset',
           text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
             'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
@@ -124,13 +125,13 @@ exports.resetPassword = function(req,res, next){
         var smtpTransport = nodemailer.createTransport('SMTP', {
           service: 'Gmail',
           auth: {
-            user: 'email',
-            pass: 'password'
+            user: emailConfig.email,
+            pass: emailConfig.password
           }
         });
         var mailOptions = {
           to: user.email,
-          from: 'email',
+          from: emailConfig.email,
           subject: 'Your Airdate password has been changed',
           text: 'Hello,\n\n' +
             'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'

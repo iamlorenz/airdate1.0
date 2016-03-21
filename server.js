@@ -17,10 +17,11 @@ var session		 = require('express-session');
 
 // DB configuration ===============================================================
 // connect to our database. later use /config/database.js for this
-var db = mongoose.connect(process.env.MONGOLAB_URI, function (error) {
-    if (error) console.error(error);
-    else console.log('mongo connected');
-});
+// var db = mongoose.connect(process.env.MONGOLAB_URI, function (error) {
+//     if (error) console.error(error);
+//     else console.log('mongo connected');
+// });
+var db = mongoose.connect('mongodb://localhost/airdateDB'); 
 
 require('./config/passport')(passport); // pass passport for configuration
 
@@ -45,7 +46,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 require('./app/routes.js')(app, passport); // load our routes and pass in our app
 
 // launch ======================================================================
-app.listen(port);
+app.listen(port, listening);
 
 //browser sync
 function listening () {
