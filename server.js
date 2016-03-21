@@ -17,7 +17,10 @@ var session		 = require('express-session');
 
 // DB configuration ===============================================================
 // connect to our database. later use /config/database.js for this
-var db = mongoose.connect('mongodb://localhost/airdateDB'); 
+var db = mongoose.connect(process.env.MONGOLAB_URI, function (error) {
+    if (error) console.error(error);
+    else console.log('mongo connected');
+});
 
 require('./config/passport')(passport); // pass passport for configuration
 
