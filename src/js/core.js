@@ -127,26 +127,26 @@ app = angular.module('airdate',[])
 					var Episode = {};
 					var airdate = new Date(data[i].airstamp);
 					var now = new Date();
-					var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+					var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 					//get the date the recentDate by subtracting (one day in ms * the days the user selected) from todays date
 					var recentDate = new Date(+now - (8.64e7 * $scope.userDays));
 
 					Episode.show = userShow.name;
 					Episode.showId = userShow.id;
-					Episode.airdate = monthNames[airdate.getMonth()] + " " + airdate.getDate() + ", " + airdate.getFullYear();
+					Episode.airdate = monthNames[airdate.getMonth()] + " " + airdate.getDate();
 					Episode.airtime = airdate.toTimeString().substring(0,5);
 					Episode.airstamp = data[i].airstamp;
-				    Episode.name = data[i].name;
-				    Episode.season = data[i].season;
-				    Episode.runtime = data[i].runtime;
-				    Episode.summary = data[i].summary.substring(3, data[i].summary.length - 4);
-				    Episode.watched = false;
+				  Episode.name = data[i].name;
+			    Episode.season = data[i].season;
+			    Episode.runtime = data[i].runtime;
+			    Episode.summary = data[i].summary.substring(3, data[i].summary.length - 4);
+			    Episode.watched = false;
 
-				    if (data[i].number < 10){
-				    	Episode.epInSeason = "0" + data[i].number;
-				    } else {
-				    	Episode.epInSeason = data[i].number;
-				    }
+			    if (data[i].number < 10){
+			    	Episode.epInSeason = "0" + data[i].number;
+			    } else {
+			    	Episode.epInSeason = data[i].number;
+			    }
 
 				    //if airdate is in the future, add to upcomingEpisodes array and watchlist array
 					if (airdate > now){
@@ -172,6 +172,11 @@ app = angular.module('airdate',[])
 			}).error(function(error){
 				console.log(error);
 			});
+		}
+
+		//Episodes
+		$scope.addEpisode = function(ep){
+				console.log(ep);
 		}
 
 		//sort seasons

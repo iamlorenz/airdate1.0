@@ -81,7 +81,14 @@ h5 {
   color: #9D9D9D; }
 
 .ep-title {
-  font-size: 18px; }
+  font-size: 16px;
+  width: 130px; }
+
+.ep-name {
+  font-size: 16px;
+  margin-left: 8px;
+  color: #33AFFF;
+  cursor: pointer; }
 
 .ep-number {
   font-size: 15px;
@@ -656,7 +663,7 @@ footer {
   .base {
     padding: 48px 32px; }
   .headershows .head1 {
-    flex: 3 30%; }
+    flex: 3 25%; }
   .headershows .head2 {
     order: 3;
     flex: 1 9%;
@@ -693,7 +700,7 @@ footer {
   .lists-container {
     flex: 13 62%; }
   .shows-container {
-    flex: 6 30%;
+    flex: 6 22%;
     display: inline;
     margin-bottom: 0; }
   .right-column {
@@ -712,7 +719,6 @@ footer {
     justify-content: flex-start; }
   .shows-wrapper {
     order: 3;
-    margin-top: 26px;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -725,7 +731,7 @@ footer {
     -ms-flex-pack: flex-start;
     justify-content: flex-start;
     align-items: flex-start; }
-    .shows-wrapper h3 {
+    .shows-wrapper h4 {
       margin-bottom: 24px;
       display: inline-block;
       margin-right: 20px; }

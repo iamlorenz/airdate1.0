@@ -44,7 +44,15 @@ h5{
 	color: $gray80;
 }
 .ep-title{
-	font-size: 18px;
+	font-size: 16px;
+	width: 130px;
+}
+.ep-name{
+	font-size: 16px;
+	margin-left: 8px;
+	color: $primary;
+	cursor: pointer;
+
 }
 .ep-number{
 	font-size: 15px;

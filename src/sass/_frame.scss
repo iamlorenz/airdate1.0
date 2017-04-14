@@ -262,7 +262,7 @@ footer{
 
 	//header when a userShows.length > 0
 	.headershows{
-		.head1{ flex:3 30%;}
+		.head1{ flex:3 25%;}
 		.head2{
 			order:3;
 			flex:1 9%;
@@ -297,7 +297,7 @@ footer{
 	.search-header{ display:inline; }
 	.lists-container { flex:13 62%;}
 	.shows-container{
-		flex: 6 30%;
+		flex: 6 22%;
 		display:inline;
 		margin-bottom: 0;
 	}
@@ -307,10 +307,9 @@ footer{
 	.shows{ @include row-wrap(flex-start);}
 	.shows-wrapper{
 		order:3;
-		margin-top: 26px;
 		@include column(flex-start);
 		align-items:flex-start;
-		h3{ margin-bottom: 24px; display:inline-block;margin-right:20px;}
+		h4{ margin-bottom: 24px; display:inline-block;margin-right:20px;}
 		.chip{margin-right:8px;}
 	}
 	footer{padding:0 32px;}

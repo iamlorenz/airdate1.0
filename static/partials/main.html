@@ -21,7 +21,7 @@
 <div class="shows-container">
     <div class="shows" ng-show="userShows.length > 0">
         <div class="shows-wrapper">
-            <!-- <h3>Your Shows </h3> -->
+            <h4>Your Shows </h4>
             <div class="chip" ng-repeat="show in userShows | orderBy:'$index':true">
                 <p>{{  show.name }}</p>
                 <img src="./static/images/deleteicon.svg" ng-click="deleteShow(show)">
@@ -45,12 +45,13 @@
 			<div ng-class="{'hide-episode': episode.watched}" class="hide-trans">
 				<p class="ep-number spacer">{{ episode.season }}.{{ episode.epInSeason }}</p>
 				<p class="ep-title">{{ episode.show }}</p>
+				<p class="ep-name">{{ episode.name }}</p>
 			</div>
 			<div>
 				<p class="date hide-trans" ng-class="{'hide-episode': episode.watched}">{{ episode.airdate }}</p>
 				<p class="time hide-trans" ng-class="{'hide-episode': episode.watched}">{{ episode.airtime }}</p>
 				<div class="spacer">
-					<input type="checkbox" id="watched{{$index}}" class="watched-active" ng-click="episode.watched = !episode.watched">
+					<input type="checkbox" id="watched{{$index}}" class="watched-active" ng-click="episode.watched = !episode.watched; addEpisode(episode)">
 					<label for="watched{{$index}}">
 						<span id="outter">
 							<span id="inner"></span>
@@ -65,6 +66,7 @@
 			<div>
 				<p class="ep-number spacer">{{ episode.season }}.{{ episode.epInSeason }}</p>
 				<p class="ep-title">{{ episode.show }}</p>
+				<p class="ep-name">{{ episode.name }}</p>
 			</div>
 			<div>
 				<p class="date">{{ episode.airdate }}</p>
