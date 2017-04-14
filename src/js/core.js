@@ -11,6 +11,9 @@ app = angular.module('airdate',[])
 		$scope.selectedSeason = -1;
 		$scope.userDays = 14;
 
+		popularShows = ['143','618', '32'];
+		$scope.popShows = [];
+
 		//ui variables
 		$scope.toggle = false;
 		$scope.showLogin = false;
@@ -30,6 +33,26 @@ app = angular.module('airdate',[])
 		else if ($location.search()['signup'])
 			$scope.showSignup = true;
 
+		//retrieve data for popular shows to display on home page
+		for (var i = 0; i < popularShows.length; i++) {
+
+			$http.get('http://api.tvmaze.com/shows/' + popularShows[i] )
+			.success(function(data){
+
+				var popShow = {};
+				popShow.name = data.name;
+				popShow.id = data.id;
+				popShow.network = data.network.name;
+				popShow.premiered = data.premiered;
+				popShow.art = data.image.original;
+
+				console.log(popShow);
+				$scope.popShows.push(popShow);
+
+			}).error(function(error){
+				console.log(error);
+			});
+		}
 
 		//set $scope.userShows to the users shows whe he loggs in
 		$http.get('/api/shows')
@@ -67,7 +90,7 @@ app = angular.module('airdate',[])
 
 		//select a show you want to add to your list
 		$scope.select = function(name, id, date) {
-	
+
 			$scope.searching = true;
 			$scope.searchTerm = "";
 
@@ -83,9 +106,11 @@ app = angular.module('airdate',[])
 			getEpisodes(userShow);
 			//add the selected show to the userShows array
 			$scope.userShows.push(userShow);
+
 			//add the show to the DB if the user is logged in
 			$http.post('/addShow', {show : userShow});
-			console.log(userShow.pastEpisodes);
+			//otherwise save it to localStorage
+			localStorage.setItem('userShowID',userShow.id);
 
 			userShow = "";
 		}
@@ -104,7 +129,7 @@ app = angular.module('airdate',[])
 					var now = new Date();
 					var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 					//get the date the recentDate by subtracting (one day in ms * the days the user selected) from todays date
-					var recentDate = new Date(+now - (8.64e7 * $scope.userDays)); 
+					var recentDate = new Date(+now - (8.64e7 * $scope.userDays));
 
 					Episode.show = userShow.name;
 					Episode.showId = userShow.id;
@@ -129,12 +154,12 @@ app = angular.module('airdate',[])
 				    	$scope.watchlist.push(Episode);
 
 				    //if airdate is in the bufferzone add it it to the recentEpisodes and past episdoes array
-				    } else if (airdate < now && airdate > recentDate) {	
+				    } else if (airdate < now && airdate > recentDate) {
 				    	$scope.recentEpisodes.push(Episode);
 				    	userShow.pastEpisodes.push(Episode);
 
-					} else { 
-						userShow.pastEpisodes.push(Episode);			    
+					} else {
+						userShow.pastEpisodes.push(Episode);
 					}
 					//clean Episode object
 					Episode = "";
@@ -170,7 +195,7 @@ app = angular.module('airdate',[])
 					if( userShow.pastEpisodes[p].season == i+1){
 						userShow.seasons[i].push(userShow.pastEpisodes[p]);
 					}
-				}	
+				}
 			}
 			return userShow;
 		}
@@ -183,7 +208,7 @@ app = angular.module('airdate',[])
 				$http.post('/rmShow', {showId : show.id });
 
 				//delete the show from the watchlist
-				for (var i = 0; i < $scope.watchlist.length; i++) {					
+				for (var i = 0; i < $scope.watchlist.length; i++) {
 					if($scope.watchlist[i].showId == show.id){
 						$scope.watchlist.splice(i, 1);
 						i--;
@@ -191,7 +216,7 @@ app = angular.module('airdate',[])
 				};
 
 				//delete the show from the recentEpisodes array
-				for (var i = 0; i < $scope.recentEpisodes.length; i++) {					
+				for (var i = 0; i < $scope.recentEpisodes.length; i++) {
 					if($scope.recentEpisodes[i].showId == show.id){
 						$scope.recentEpisodes.splice(i, 1);
 						i--;
@@ -210,7 +235,6 @@ app = angular.module('airdate',[])
 		$scope.selectSeason = function(number){
 			$scope.selectedSeason = number;
 		}
-		
 
 
 }]).directive('toggleClass', function() {
@@ -223,4 +247,3 @@ app = angular.module('airdate',[])
         }
     };
 });
-

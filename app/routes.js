@@ -5,9 +5,13 @@ module.exports = function(app, passport){
 
 	//render index.html
 	app.get('/', function(req, res){
-		res.render('index.html', { 
-            message: req.flash('loginMessage')
-        });
+    if (req.isAuthenticated()){
+      console.log("you are authenticated");
+      res.redirect('/app');
+    } else {
+      res.render('index.html', { message: req.flash('loginMessage')});
+      console.log("NoTTT authenticated");
+    }
 	});
 
   //process the login form
@@ -15,10 +19,10 @@ module.exports = function(app, passport){
         successRedirect : '/app', // redirect to the secure app section
         failureRedirect : '/#?login', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
-    }));
+  }));
 
 	app.get('/signup', function(req, res) {
-      res.render('signup.html', { message: req.flash('loginMessage') }); 
+      res.render('signup.html', { message: req.flash('loginMessage') });
   });
 
   // process the signup form
@@ -61,10 +65,10 @@ module.exports = function(app, passport){
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
 
-    // if user is authenticated in the session, carry on 
+    // if user is authenticated in the session, carry on
     if (req.isAuthenticated())
         return next();
 
     // if they aren't redirect them to the home page
     res.redirect('/');
-} 
+}

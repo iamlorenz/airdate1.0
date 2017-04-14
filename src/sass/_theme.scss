@@ -24,7 +24,7 @@
 //text style
 h1{
 	font-size: 26px;
-	font-weight: 800;
+	font-weight: 100;
 	line-height:34px;
 }
 h2{
@@ -34,6 +34,10 @@ h2{
 h3{
 	font-size: 18px;
 	font-weight: 700;
+}
+h4{
+	font-size: 17px;
+	font-weight: 600;
 }
 h5{
 	font-size:13px;
@@ -112,7 +116,7 @@ hr{
 	@include row-wrap(flex-end);
 	:first-child{margin-right:4px;}
 }
-#logo{	
+#logo{
 	align-self: flex-end;
 	width:130px;
 }
@@ -227,14 +231,8 @@ input[type="checkbox"]:checked + label #outter {
 
 	h1{
 		font-size: 46px;
-		line-height: 48px;
+		line-height: 60px;
 	}
 	h3{font-size: 22px;}
 
 }
-
-
-
-
-
-

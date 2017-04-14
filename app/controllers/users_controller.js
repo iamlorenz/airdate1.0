@@ -3,7 +3,7 @@ var async       = require('async');
 var crypto      = require('crypto');
 var bcrypt      = require('bcrypt-nodejs');
 var mongoose    = require('mongoose');
-var User        = mongoose.model('User'); 
+var User        = mongoose.model('User');
 var nodemailer  = require('nodemailer');
 var emailConfig = require('../../config/email_config');
 
@@ -145,5 +145,3 @@ exports.resetPassword = function(req,res, next){
       res.redirect('/app');
     });
 };
-
-

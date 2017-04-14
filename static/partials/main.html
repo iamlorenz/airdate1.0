@@ -1,16 +1,25 @@
-<!-- ========================== MAIN ============================ -->
-<!-- ============================================================ -->
+<!-- POPULAR SHOWS -->
+	<section class="popular" ng-hide="!userShows.length == 0">
+		<h4>🔥 Popular right now</h4>
+		<div class="pop-shows-wrapper">
+			<div class="pop-show" ng-repeat="show in popShows" ng-click="select(show.name, show.id, show.premiered)"
+			style="background-image: url({{show.art}});background-size: 400px auto;background-position: center;">
+				<div class="overlay">
+					<div class="plus">
+						<img src="static/images/plus-icon.svg">
+					</div>
+					<div class="overlay-bottom">
+							<h3>{{ show.name }}</h3>
+							<span>{{ show.network }}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
  <!-- Your Shows List -->
 <div class="shows-container">
     <div class="shows" ng-show="userShows.length > 0">
-        <div class="controls-container">
-            <div class="controls" ng-class="{'switch-off': showWatchlist==false}">
-                <div class="switch" ng-click="showWatchlist = !showWatchlist">
-                    <div id="switch-handle"></div>
-                </div>
-                <span ng-click="showWatchlist = !showWatchlist">Watchlist</span>
-            </div>
-        </div>
         <div class="shows-wrapper">
             <!-- <h3>Your Shows </h3> -->
             <div class="chip" ng-repeat="show in userShows | orderBy:'$index':true">
@@ -63,57 +72,6 @@
 				<div class="spacer"></div>
 			</div>
 		</div>
-	</div>	
-
-
-	<!-- Shows List -->
-	<div class="list episodelist" ng-show="userShows.length > 0 && !showWatchlist" ng-repeat="show in userShows | orderBy:'$index':true">
-		<!-- headline -->
-		<div class="head">
-			<h3>{{ show.name }}</h3>
-			<p class="date">{{ show.started }}</p>
-		</div>
-
-		<!-- season selector -->
-		<div class="seasons">
-			<div class="chip" ng-repeat="season in show.seasons" ng-click="selectSeason($index);" toggle-class="selected">{{ $index+1 }}</div>
-			<div class="chip selected" toggle-class="selected">Upcoming</div>
-		</div>
-
-		<!-- old episodes -->
-		<div class="episodes" ng-if="selectedSeason > -1" ng-repeat="episode in show.seasons[selectedSeason]">
-			<div>
-				<p class="ep-number spacer">{{ episode.season }}.{{ episode.epInSeason }}</p>
-				<p class="ep-title">{{ episode.name }}</p>
-			</div>
-			<div>
-				<p class="date">{{ episode.airdate }}</p>
-				<p class="time">{{ episode.airtime }}</p>
-				<div class="spacer"></div>
-			</div>
-		</div>
-		<hr ng-if="selectedSeason > -1">
-		<!-- list of episodes -->
-		<div class="episodes" ng-repeat="episode in show.upcomingEpisodes">
-			<div>
-				<p class="ep-number spacer">{{ episode.season }}.{{ episode.epInSeason }}</p>
-				<p class="ep-title">{{ episode.name }}</p>
-			</div>
-			<div>
-				<p class="date">{{ episode.airdate }}</p>
-				<p class="time">{{ episode.airtime }}</p>
-				<div class="spacer"></div>
-			</div>
-			<!-- 
-			<div>
-				<p class="summary">{{ episode.summary }}</p>
-			</div> 
-			-->
-		</div>
-<!-- 		<div class="add-all-episodes">
-		<div class="button button-regular">Add All Episodes to Calendar</div>
 	</div>
--->	</div>	
-</div>
 
 <div class="right-column"></div>
